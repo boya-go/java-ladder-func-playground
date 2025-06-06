@@ -8,14 +8,16 @@ import java.util.List;
 
 public class LadderService {
     private final LadderGenerator generator;
+    private final Size size;
 
-    public LadderService() {
+    public LadderService(Size size) {
         this.generator = new LadderGenerator();
+        this.size = size;
     }
 
     public Ladder createLadder() {
-        int height = Size.getHeight();
-        int width = Size.getWidth();
+        int height = size.getHeight();
+        int width = size.getWidth();
         List<Line> lines = generator.generateLadder(height, width);
 
         return new Ladder(lines, width);

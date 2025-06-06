@@ -2,14 +2,27 @@ package domain;
 
 public class Size {
 
-    private static final int FIXED_HEIGHT = 4;
-    private static final int FIXED_WIDTH = 4;
+    private final int height;
+    private final int width;
+    private static final String LADDER_SIZE_INVALID_MESSAGE = "높이와 넓이는 모두 1 이상이어야 합니다.";
 
-    public static int getHeight() {
-        return FIXED_HEIGHT;
+    public Size(int height, int width) {
+        validate(height, width);
+        this.height = height;
+        this.width = width;
     }
 
-    public static int getWidth() {
-        return FIXED_WIDTH;
+    private void validate(int height, int width) {
+        if (height < 1 || width < 1) {
+            throw new IllegalArgumentException(LADDER_SIZE_INVALID_MESSAGE);
+        }
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 }
